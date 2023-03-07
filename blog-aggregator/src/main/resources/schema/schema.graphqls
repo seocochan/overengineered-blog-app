@@ -1,0 +1,7 @@
+type Query {
+    greet(input: String): [Greet]
+}
+
+type Greet {
+    message: String
+}

@@ -1,0 +1,5 @@
+bases:
+  - ../../base/deployments
+  - ../../base/services
+  - ../../base/ingress
+# TODO: add dev only resources (e.g. DB, MQ)

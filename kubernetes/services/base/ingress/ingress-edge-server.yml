@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: edge
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: oba.minikube.me
+      http:
+        paths:
+          - path: /graphi?ql
+            pathType: Prefix
+            backend:
+              service:
+                name: blog-aggregator
+                port:
+                  number: 80
+          - path: /actuator/health
+            pathType: Prefix
+            backend:
+              service:
+                name: blog-aggregator
+                port:
+                  number: 80
