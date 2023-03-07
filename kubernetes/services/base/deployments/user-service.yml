@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blog-aggregator
+  name: user-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: blog-aggregator
+      app: user-service
   template:
     metadata:
       labels:
-        app: blog-aggregator
+        app: user-service
         version: latest
     spec:
       containers:
-        - name: blog-aggregator
-          image: oba/blog-aggregator
+        - name: user-service
+          image: oba/user-service
           imagePullPolicy: Never
           # TODO: env, envFrom
           ports:

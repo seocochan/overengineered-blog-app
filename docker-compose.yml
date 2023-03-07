@@ -9,4 +9,22 @@ services:
         limits:
           memory: 350m
     ports:
-      - "8080:8080"
+      - "8080:80"
+  post-service:
+    build: post-service
+    image: oba/post-service
+    deploy:
+      resources:
+        limits:
+          memory: 350m
+    ports:
+      - "8081:80"
+  user-service:
+    build: user-service
+    image: oba/user-service
+    deploy:
+      resources:
+        limits:
+          memory: 350m
+    ports:
+      - "8082:80"
