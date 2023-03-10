@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rank-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rank-service
+  template:
+    metadata:
+      labels:
+        app: rank-service
+        version: latest
+    spec:
+      containers:
+        - name: rank-service
+          image: oba/rank-service
+          imagePullPolicy: Never
+          # TODO: env, envFrom
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: 350Mi
+          livenessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 20
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+            successThreshold: 1
+          # TODO: volumeMounts(config)
+        # TODO: volumes(config)

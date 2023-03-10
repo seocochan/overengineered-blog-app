@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rank-service
+spec:
+  selector:
+    app: rank-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80

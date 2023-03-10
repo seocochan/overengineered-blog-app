@@ -15,7 +15,7 @@ import reactor.netty.http.client.HttpClient
 
 @DgsComponent
 class GreetDataFetcher {
-    private final val services = listOf("post", "user")
+    private final val services = listOf("post", "user", "rank")
     private final val webClient: WebClient = WebClient.builder().clientConnector(
         ReactorClientHttpConnector(
             HttpClient.create().resolver(DefaultAddressResolverGroup.INSTANCE)

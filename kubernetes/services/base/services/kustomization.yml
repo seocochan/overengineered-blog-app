@@ -1,4 +1,5 @@
 resources:
   - blog-aggregator.yml
   - post-service.yml
+  - rank-service.yml
   - user-service.yml
