@@ -28,7 +28,13 @@ dependencies {
     implementation("com.netflix.graphql.dgs:graphql-dgs-webflux-starter")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
-    // testImplementation("org.springframework.security:spring-security-test")
+
+    // mac silicon only
+    val isMacOS: Boolean = System.getProperty("os.name").startsWith("Mac OS X")
+    val architecture = System.getProperty("os.arch").toLowerCase()
+    if (isMacOS && architecture == "aarch64") {
+        developmentOnly("io.netty:netty-all:4.1.89.Final")
+    }
 }
 
 tasks.withType<com.netflix.graphql.dgs.codegen.gradle.GenerateJavaTask> {
