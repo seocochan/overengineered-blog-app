@@ -3,3 +3,20 @@ resources:
   - post-service.yml
   - rank-service.yml
   - user-service.yml
+
+configMapGenerator:
+  - name: blog-aggregator-configmap
+    envs:
+      - config-repo/application.env
+    files:
+      - config-repo/blog-aggregator.yml
+  - name: rank-service-configmap
+    envs:
+      - config-repo/application.env
+      - config-repo/rank-service.env
+
+secretGenerator:
+  - name: blog-aggregator-secrets
+    type: Opaque
+    envs:
+      - config-repo/auth-secret.env

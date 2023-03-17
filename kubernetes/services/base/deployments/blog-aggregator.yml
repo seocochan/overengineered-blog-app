@@ -17,7 +17,14 @@ spec:
         - name: blog-aggregator
           image: oba/blog-aggregator
           imagePullPolicy: Never
-          # TODO: env, envFrom
+          env:
+            - name: SPRING_CONFIG_LOCATION
+              value: file:/config-repo/blog-aggregator.yml
+          envFrom:
+            - configMapRef:
+                name: blog-aggregator-configmap
+            - secretRef:
+                name: blog-aggregator-secrets
           ports:
             - containerPort: 80
           resources:
@@ -43,5 +50,10 @@ spec:
             timeoutSeconds: 2
             failureThreshold: 3
             successThreshold: 1
-          # TODO: volumeMounts(config)
-        # TODO: volumes(config)
+          volumeMounts:
+            - mountPath: /config-repo
+              name: config-repo-volume
+      volumes:
+        - name: config-repo-volume
+          configMap:
+            name: blog-aggregator-configmap

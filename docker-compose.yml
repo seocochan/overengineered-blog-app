@@ -4,6 +4,13 @@ services:
   blog-aggregator:
     build: blog-aggregator
     image: oba/blog-aggregator
+    env_file:
+      - $PWD/kubernetes/services/base/deployments/config-repo/application.env
+      - $PWD/kubernetes/services/base/deployments/config-repo/auth-secret.env
+    environment:
+      - SPRING_CONFIG_LOCATION=file:/config-repo/blog-aggregator.yml
+    volumes:
+      - $PWD/kubernetes/services/base/deployments/config-repo:/config-repo
     deploy:
       resources:
         limits:
@@ -31,6 +38,9 @@ services:
   rank-service:
     build: rank-service
     image: oba/rank-service
+    env_file:
+      - $PWD/kubernetes/services/base/deployments/config-repo/application.env
+      - $PWD/kubernetes/services/base/deployments/config-repo/rank-service.env
     deploy:
       resources:
         limits:

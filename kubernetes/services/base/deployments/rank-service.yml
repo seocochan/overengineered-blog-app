@@ -17,7 +17,9 @@ spec:
         - name: rank-service
           image: oba/rank-service
           imagePullPolicy: Never
-          # TODO: env, envFrom
+          envFrom:
+            - configMapRef:
+                name: rank-service-configmap
           ports:
             - containerPort: 80
           resources:
@@ -43,5 +45,3 @@ spec:
             timeoutSeconds: 2
             failureThreshold: 3
             successThreshold: 1
-          # TODO: volumeMounts(config)
-        # TODO: volumes(config)

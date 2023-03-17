@@ -1,0 +1,5 @@
+server.port: 80
+dgs.graphql.graphiql.title: OBA GraphQL
+auth.admin:
+  id: ${AUTH_ADMIN_ID}
+  password: ${AUTH_ADMIN_PASSWORD}

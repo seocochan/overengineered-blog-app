@@ -8,11 +8,9 @@
 **/node_modules
 **/dist
 
-# Environment variables
-.env
-.env.development.local
-.env.test.local
-.env.production.local
+# Configs & secrets
+kubernetes/services/base/deployments/config-repo/*
+!kubernetes/services/base/deployments/config-repo/*.example.*
 
 # Logs
 logs
